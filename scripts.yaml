@@ -6,15 +6,30 @@
 envFile:
  - .env
 
-allow:
-  net: true
-  read: true
+allow: 
   env: true
 
 scripts:
-  start: deno run main.ts
+  start: 
+    cmd: deno run main.ts codeup latest
+    allow: 
+      read: true
+      net: true
+      run: "deno"
+  
+  reset: 
+    cmd: 
+      - deno install -f --name codeup https://deno.land/x/codeup@2.0.0-beta.1/main.ts
+    allow:
+      read: true 
+      write: true
+      run: true
 
-  test: deno test 
+  test: 
+    cmd: deno test 
+    allow: 
+      net: true
+
 
   format: deno fmt
 
