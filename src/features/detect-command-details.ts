@@ -1,5 +1,5 @@
 import { log } from "../deps/log.std.ts";
-import { parseDenoModuleUrl } from "./parse-deno-module-url";
+import { parseDenoModuleUrl } from "./parse-deno-module-url.ts";
 
 /**
  * This function detects all required information for updating that command script
