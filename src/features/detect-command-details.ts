@@ -1,4 +1,5 @@
 import { log } from "../deps/log.std.ts";
+import { parseDenoModuleUrl } from "./parse-deno-module-url";
 
 /**
  * This function detects all required information for updating that command script
@@ -42,9 +43,9 @@ export function detectCommandDetails(
     `Found: Command Module URL: "${sanitizedModuleUrl}"`,
   );
 
-  const [_, _denoX, moduleAndVersion, _entryFile] = sanitizedModuleUrl.pathname
-    .split("/");
-  const [moduleName, moduleVersion] = moduleAndVersion.split("@");
+  const { moduleName, moduleVersion, filepath } = parseDenoModuleUrl(
+    sanitizedModuleUrl,
+  );
 
   const execFlags = commandSplit.filter((section) =>
     !section.startsWith(`exec`) &&
@@ -61,6 +62,7 @@ export function detectCommandDetails(
     moduleUrlString: sanitizedModuleUrl.toString(),
     moduleName,
     moduleVersion,
+    filepath,
   };
 
   return commandDetails;
