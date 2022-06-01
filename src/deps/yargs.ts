@@ -18,4 +18,5 @@ export type YargsInstance = ReturnType<typeof yargs>;
 /**
  * How to import / use yargs in deno: https://deno.land/x/yargs@v17.5.1-deno#deno
  * Yargs API Docs: https://github.com/yargs/yargs/blob/HEAD/docs/api.md
+ * Official Yargs API Docs: https://yargs.js.org/docs/#api-reference
  */
