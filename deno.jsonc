@@ -1,0 +1,22 @@
+/**
+ * Deno Config File
+ * - jsonc = JSON with comments
+ * - can be expanded as needed to configure integrated tsc, linter and formatter
+ */
+{
+    /**
+     * Typescript Compiler Options
+     */
+    "compilerOptions": {
+        "strict": true
+    },
+    /**
+     * Deno tasks is currently unstable, therefore this template still uses vr (velociraptor)
+     * However, Users of this template may decide to use deno tasks directly, 
+     * especially since the improved integration into VSCode since 1.21. 
+     * Docs for Deno Tasks: https://deno.land/manual@v1.20.1/tools/task_runner
+     */
+    "tasks": {
+        "start": "deno run -A --unstable main.ts"
+    }
+}
