@@ -39,7 +39,7 @@ export function detectCommandDetails(
   }
   // trim single quotes from module url
   const sanitizedModuleUrl = new URL(commandModuleUrl.slice(1, -1));
-  log.info(
+  log.debug(
     `Found: Command Module URL: "${sanitizedModuleUrl}"`,
   );
 
