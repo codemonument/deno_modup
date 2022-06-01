@@ -46,6 +46,7 @@ scripts:
     allow: 
       read: true
       net: 'deno.land'
+      run: 'deno'
 
   uninstall: deno uninstall --unstable ${CLI_NAME}
 
