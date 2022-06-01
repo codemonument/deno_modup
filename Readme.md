@@ -32,3 +32,8 @@ Available at:
 
 4. Run `modup codeup` to upgrade codeup to the latest version. 
    See shell output for detailed information.
+
+## ToDos
+
+- add more validation: dno't try to update locally installed modules (with file url) or modules from other places than deno.land/x
+- integrate nest.land 
