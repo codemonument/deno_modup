@@ -8,7 +8,9 @@ import { detectCommandDetails } from "../features/detect-command-details.ts";
 /**
  * @param args
  */
-async function commandHandler({ cliName, targetVersion, force }: MainArgs) {
+async function commandHandler(
+  { cliName, targetVersion, force, dryRun }: MainArgs,
+) {
   log.info(
     `Trying to update cli "${cliName}" to version "${targetVersion}"...`,
   );
@@ -29,7 +31,29 @@ async function commandHandler({ cliName, targetVersion, force }: MainArgs) {
     force,
   );
 
-  console.log(commandDetails);
+  const versionString = (targetVersion === "latest") ? "" : `@${targetVersion}`;
+  const upgradeUrl = new URL(
+    `/x/${commandDetails.moduleName}${versionString}/${commandDetails.filepath}`,
+    commandDetails.moduleUrl,
+  );
+  const upgradeCmd = [
+    "deno",
+    "install",
+    ...commandDetails.execFlags,
+    "--force",
+    `'${upgradeUrl.toString()}'`,
+  ];
+
+  log.info(`Update command: ${upgradeCmd.join(" ")}`);
+
+  if (dryRun) {
+    log.info(`DryRun mode active => Stopping here`);
+    return;
+  }
+
+  if (!dryRun) {
+    await Deno.run({ cmd: upgradeCmd });
+  }
 }
 
 function argsBuilder(yargs: YargsInstance) {
@@ -39,6 +63,12 @@ function argsBuilder(yargs: YargsInstance) {
     .describe(
       `force`,
       `forces the cli to ignore all security validations during an update.`,
+    )
+    .boolean(`dryRun`)
+    .alias(`dryRun`, "d")
+    .describe(
+      `dryRun`,
+      `Does not execute the update but outputs useful information about what it will do.`,
     )
     .positional(`cliName`, {
       describe: `The name of the cliCommand as installed by "deno install" `,
