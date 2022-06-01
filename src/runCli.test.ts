@@ -15,8 +15,4 @@ describe(`runCli`, () => {
   it(`on command 'help': showHelp & exit(0)`, async () => {
     await runCli(["help"]);
   });
-
-  it(`should run main command`, async () => {
-    await runCli([]);
-  });
 });
