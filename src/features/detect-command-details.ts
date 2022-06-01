@@ -23,7 +23,8 @@ export function detectCommandDetails(
     );
   }
 
-  const commandModuleUrl = execCommand.split(" ").find((text) =>
+  const commandSplit = execCommand.split(" ");
+  const commandModuleUrl = commandSplit.find((text) =>
     text.startsWith("'http")
   );
 
@@ -45,11 +46,17 @@ export function detectCommandDetails(
     .split("/");
   const [moduleName, moduleVersion] = moduleAndVersion.split("@");
 
-  console.log(sanitizedModuleUrl.pathname);
-  console.log(moduleName, moduleVersion);
+  const execFlags = commandSplit.filter((section) =>
+    !section.startsWith(`exec`) &&
+    !section.startsWith(`deno`) &&
+    !section.startsWith(`run`) &&
+    !section.startsWith(`'http`) &&
+    !section.startsWith(`"$@"`)
+  );
 
   const commandDetails = {
     execCommand,
+    execFlags,
     moduleUrl: sanitizedModuleUrl,
     moduleUrlString: sanitizedModuleUrl.toString(),
     moduleName,
