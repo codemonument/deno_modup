@@ -21,3 +21,14 @@ Available at:
    ```
 2. Enjoy modup command! (Run `modup help` to get usage information)
 3. Optional: You can change the command to anything you like by simply passing another --name instead of `modup`
+
+## Example 
+
+1. Install `codeup` in a previous version: `deno install --allow-read --allow-write --allow-net --allow-run --allow-env --name codeup https://deno.land/x/codeup@2.0.0-beta.1/main.ts`
+
+2. Run `codeup help` to verify installed version 
+
+3. Install `modup`: `deno install --allow-read --allow-net --allow-run --allow-env --name modup https://deno.land/x/modup`
+
+4. Run `modup codeup` to upgrade codeup to the latest version. 
+   See shell output for detailed information.
