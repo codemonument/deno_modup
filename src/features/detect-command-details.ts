@@ -60,6 +60,7 @@ export function detectCommandDetails(
     execFlags,
     moduleUrl: sanitizedModuleUrl,
     moduleUrlString: sanitizedModuleUrl.toString(),
+    moduleBaseUrl: new URL(`/x/${moduleName}`, sanitizedModuleUrl),
     moduleName,
     moduleVersion,
     filepath,
