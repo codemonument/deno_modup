@@ -61,7 +61,9 @@ async function commandHandler(
     "install",
     ...commandDetails.execFlags,
     "--force",
-    `'${upgradeUrl.toString()}'`,
+    "--name",
+    cliName,
+    upgradeUrl.toString(),
   ];
 
   log.info(`Update command: ${upgradeCmd.join(" ")}`);
@@ -72,7 +74,8 @@ async function commandHandler(
   }
 
   if (!dryRun) {
-    await Deno.run({ cmd: upgradeCmd });
+    const denoInstallProcess = Deno.run({ cmd: upgradeCmd });
+    await denoInstallProcess.status();
   }
 }
 
