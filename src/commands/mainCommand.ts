@@ -13,7 +13,7 @@ function argsBuilder(yargs: YargsInstance) {
     .positional(`cliName`, {
       describe: `The name of the cliCommand as installed by "deno install" `,
     })
-    .option(`version`, {
+    .option(`targetVersion`, {
       alias: "v",
       describe:
         `A version tag which maches an available tag for the module on deno.land/x. Default: latest`,
