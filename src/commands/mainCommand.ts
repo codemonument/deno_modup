@@ -10,18 +10,14 @@ function commandHandler(args: MainArgs) {
 
 function argsBuilder(yargs: YargsInstance) {
   return yargs
-    .boolean("boolArg")
-    .default("boolArg", false)
-    .alias("boolArg", "b")
-    .describe(
-      "boolArg",
-      `Some boolean argument with a default value of false.`,
-    )
-    .option("someOption", {
-      alias: "o",
+    .positional(`cliName`, {
+      describe: `The name of the cliCommand as installed by "deno install" `,
+    })
+    .option(`version`, {
+      alias: "v",
       describe:
-        `[Optional] Some option flag (--someOption value) which is not required (due to the default of undefined)`,
-      default: undefined,
+        `A version tag which maches an available tag for the module on deno.land/x. Default: latest`,
+      default: "latest",
     });
 }
 
@@ -29,8 +25,8 @@ function argsBuilder(yargs: YargsInstance) {
  * Area of yargs command definition module export
  */
 
-export const command = "$0";
+export const command = "$0 <cliName>";
 export const describe =
-  "The default command, called when no subcommand was passed";
+  "Upgrades a given deno module binary installed by `deno install` from deno.land/x";
 export const builder = argsBuilder;
 export const handler = commandHandler;
