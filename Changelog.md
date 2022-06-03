@@ -3,6 +3,7 @@
 ## 1.0.1 - 2022-06-03 
 
 - Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts
+- Fix Install command in Readme
 
 ## 1.0.0 - 2022-06-01
 
