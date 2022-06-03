@@ -7,9 +7,10 @@ try {
     `Running ${Deno.env.get("CLI_NAME")}
      Version: ${VERSION} \n`,
   );
+
   // Main Command
   await runCli(Deno.args);
 } catch (error) {
-  console.error(error);
+  log.error(error);
   Deno.exit();
 }
