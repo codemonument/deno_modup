@@ -12,4 +12,9 @@ export interface DenoCommandShim {
    * The file content of the command shim as array of lines
    */
   lines: string[];
+
+  /**
+   * The command which is run when the shim is called
+   */
+  commandString: string;
 }
