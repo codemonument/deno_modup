@@ -1,11 +1,15 @@
 # Changelog 
 
+## 1.0.1 - 2022-06-03 
+
+- Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts
+
 ## 1.0.0 - 2022-06-01
 
-- contains the full functionality to upgrade cli tools from deno.land/x 
-- contains install and usage examples in readme
+- Contains the full functionality to upgrade cli tools from deno.land/x 
+- Contains install and usage examples in readme
 
 ## 0.0.0 - 2022-06-01
 *Initial Version*
 
-- contains the demo cli from https://github.com/codemonument/deno-scripting-template
+- Contains the demo cli from https://github.com/codemonument/deno-scripting-template
