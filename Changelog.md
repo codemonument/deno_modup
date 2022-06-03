@@ -1,9 +1,13 @@
 # Changelog 
 
-## 1.0.1 - 2022-06-03 
+## NEXT
 
 - Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts
 - Fix Install command in Readme
+- Deactivate '--help' output when an error happens 
+- Add validations: 
+    - throw error when command url is a file:/// url 
+    - throw error when command url is not supported (currently only deno.land)
 
 ## 1.0.0 - 2022-06-01
 
