@@ -8,7 +8,8 @@ import { VERSION } from "../VERSION.ts";
  */
 export const parser = yargs()
   .command(commands)
-  .help()
+  .showHelpOnFail(false, `Specify --help for available options`)
+  .help(`help`)
   .version(VERSION);
 
 /**
