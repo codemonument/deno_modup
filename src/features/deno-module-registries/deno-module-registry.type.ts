@@ -8,7 +8,7 @@ export interface DenoModuleRegistry {
    * This is used to compare against the URL.host field to detect,
    * which registry implementation needs to be used.
    */
-  hostname: string;
+  readonly hostname: string;
 
   /**
    * @param commandShim The deno command shim for which to get the latest version
