@@ -25,6 +25,25 @@ export function detectCommandDetails(
   }
 
   const commandSplit = execCommand.split(" ");
+
+  /**
+   * Validation:
+   * Check, if commandModuleUrl is a fileUrl
+   */
+  const fileUrlCommand = commandSplit.find((text) => text.startsWith("'file"));
+  if (fileUrlCommand !== undefined) {
+    throw new Deno.errors.InvalidData(
+      `Found a file url instead of a http source in the command file "${commandFile}".
+    
+    File URL in command file: ${fileUrlCommand}. 
+    This CLI can't upgrade commands installed from file URLs, since there's no list of available versions which it could query. 
+      `,
+    );
+  }
+
+  /**
+   * Get commandModuleUrl
+   */
   const commandModuleUrl = commandSplit.find((text) =>
     text.startsWith("'http")
   );
@@ -37,11 +56,31 @@ export function detectCommandDetails(
       ${commandFileString}`,
     );
   }
-  // trim single quotes from module url
-  const sanitizedModuleUrl = new URL(commandModuleUrl.slice(1, -1));
+
+  /**
+   * trim single quotes from module url
+   */
+  const trimmedModuleUrl = commandModuleUrl.slice(1, -1);
+
+  /**
+   * Convert trimmedModuleURL to URL object
+   */
+  const sanitizedModuleUrl = new URL(trimmedModuleUrl);
   log.debug(
     `Found: Command Module URL: "${sanitizedModuleUrl}"`,
   );
+
+  /**
+   * Validation:
+   * sanitizedModuleUrl should be a supported domain
+   */
+  if (sanitizedModuleUrl.host !== "deno.land") {
+    throw new Deno.errors.NotSupported(
+      `Found a module url which is not from 'deno.land'. 
+    Currently, deno.land is the only supported domain for auto-upgrading installed modules.
+    `,
+    );
+  }
 
   const { moduleName, moduleVersion, filepath } = parseDenoModuleUrl(
     sanitizedModuleUrl,
