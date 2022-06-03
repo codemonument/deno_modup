@@ -20,6 +20,7 @@ scripts:
   reset: 
     cmd: 
       - deno install -f --name codeup https://deno.land/x/codeup@2.0.0-beta.1/main.ts
+      - deno install -f --name dmm --allow-net='cdn.deno.land,api.deno.land,x.nest.land,raw.githubusercontent.com,github.com,api.github.com' --allow-read='deps.ts' --allow-write='deps.ts' https://x.nest.land/dmm@2.1.0/mod.ts
     allow:
       read: true 
       write: true
