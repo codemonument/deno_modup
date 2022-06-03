@@ -37,3 +37,4 @@ Available at:
 
 - add more validation: dno't try to update locally installed modules (with file url) or modules from other places than deno.land/x
 - integrate nest.land 
+- look into switching from yargs package to https://drash.land/line/v1.x/getting-started/introduction
