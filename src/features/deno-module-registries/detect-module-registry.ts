@@ -1,7 +1,6 @@
 import { DenoModuleRegistry } from "./deno-module-registry.type.ts";
 import { DenoLandRegistry } from "./deno.land.registry.ts";
 import { NestLandRegistry } from "./nest.land.registry.ts";
-import { UnknownRegistry } from "./unknown.registry.ts";
 
 /**
  * Detects a deno module registry based on the url of a module
@@ -17,6 +16,8 @@ export function detectModuleRegistry(
     case NestLandRegistry.hostname:
       return new NestLandRegistry();
     default:
-      return new UnknownRegistry();
+      throw new Deno.errors.NotSupported(
+        `Unsupported deno registry used in moduleURL: ${url.toString()}`,
+      );
   }
 }
