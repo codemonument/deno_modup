@@ -2,11 +2,11 @@ import { DenoCommandShim } from "../deno-command-shim/deno-command-shim.type.ts"
 import { DenoModuleRegistry } from "./deno-module-registry.type.ts";
 import { DenoModuleUrlSegments } from "./deno-module-url-segments.type.ts";
 
-export class DenoLandRegistry implements DenoModuleRegistry {
-  readonly hostname: string;
+export class DenoLandRegistry extends DenoModuleRegistry {
+  static readonly hostname = `deno.land`;
 
   constructor() {
-    this.hostname = `deno.land`;
+    super();
   }
 
   getLatestVersion(
