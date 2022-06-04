@@ -3,7 +3,7 @@ export interface DenoShimExecCommand {
    * Contains the complete command string,
    * starting with 'deno run ...'
    */
-  fullExecCommand: string;
+  execCommand: string;
 
   /**
    * The flags which are passed to the deno runtime for this module.
