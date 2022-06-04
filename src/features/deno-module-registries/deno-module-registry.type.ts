@@ -18,4 +18,12 @@ export interface DenoModuleRegistry {
   getLatestVersion(
     commandShim: DenoCommandShim,
   ): { versionString: string; latestVersionModuleUrl: URL };
+
+  parseModuleUrl(urlInput: string | URL): {
+    moduleURL: URL;
+    moduleName: string;
+    moduleVersion: string;
+    filepath: string;
+    filename: string;
+  };
 }
