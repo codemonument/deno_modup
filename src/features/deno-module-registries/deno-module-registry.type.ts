@@ -1,4 +1,5 @@
 import { DenoCommandShim } from "../deno-command-shim/deno-command-shim.type.ts";
+import { DenoModuleUrlSegments } from "./deno-module-url-segments.type.ts";
 /**
  * Todo: Implement
  */
@@ -19,11 +20,5 @@ export interface DenoModuleRegistry {
     commandShim: DenoCommandShim,
   ): { versionString: string; latestVersionModuleUrl: URL };
 
-  parseModuleUrl(urlInput: string | URL): {
-    moduleURL: URL;
-    moduleName: string;
-    moduleVersion: string;
-    filepath: string;
-    filename: string;
-  };
+  parseModuleUrl(urlInput: string | URL): DenoModuleUrlSegments;
 }
