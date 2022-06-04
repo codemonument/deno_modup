@@ -20,5 +20,5 @@ export interface DenoModuleRegistry {
     commandShim: DenoCommandShim,
   ): { versionString: string; latestVersionModuleUrl: URL };
 
-  parseModuleUrl(urlInput: string | URL): DenoModuleUrlSegments;
+  parseModuleUrlSegments(urlInput: string | URL): DenoModuleUrlSegments;
 }
