@@ -58,6 +58,7 @@ export function parseCommandShim(
     path: shimPath,
     lines: shimLines,
     commandString,
+    moduleRegistry,
     execCommand,
     moduleUrlSegments,
   };
