@@ -22,4 +22,17 @@ export abstract class DenoModuleRegistry {
   abstract parseModuleUrlSegments(
     urlInput: string | URL,
   ): ModuleUrlSegments;
+
+  /**
+   * Combines the params into a new URL object
+   * which points to a specific version of the given module
+   * @param moduleBaseURL
+   * @param moduleVersion
+   * @param entryFilePath
+   */
+  abstract buildModuleUrl(
+    moduleBaseURL: URL,
+    moduleVersion: string,
+    entryFilePath: string,
+  ): URL;
 }
