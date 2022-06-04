@@ -3,8 +3,7 @@ import { MainArgs } from "./mainArgs.type.ts";
 import { join } from "../deps/path.std.ts";
 import { log } from "../deps/log.std.ts";
 import { which } from "../deps/which.ts";
-import { detectCommandDetails } from "../features/detect-command-details.ts";
-import { findLatestModuleVersion } from "../features/find-latest-module-version.ts";
+import { parseCommandShim } from "../features/deno-command-shim/parse-command-shim.ts";
 
 /**
  * @param args
@@ -25,41 +24,44 @@ async function commandHandler(
   log.info(
     `Found: Script file for command "${cliName}" (a.k.a Command File): ${commandFile}`,
   );
-  const commandFileString = await Deno.readTextFile(commandFile);
-  const commandDetails = detectCommandDetails(
-    commandFile,
-    commandFileString,
-    force,
-  );
-  log.info(`Current local version: ${commandDetails.moduleVersion}`);
+  const commandFileContent = await Deno.readTextFile(commandFile);
 
-  const latestOnlineVersion = await findLatestModuleVersion(
-    commandDetails.moduleBaseUrl,
-  );
-  log.info(`Latest online version: ${latestOnlineVersion}`);
+  const commandShim = parseCommandShim(commandFile, commandFileContent, {
+    validateDenoShim: !force,
+  });
 
-  if (commandDetails.moduleVersion === latestOnlineVersion) {
+  const localVersion = commandShim.moduleUrlSegments.moduleVersion;
+  log.info(`Current local version: ${localVersion}`);
+
+  const { versionString: remoteVersion } = await commandShim.moduleRegistry
+    .getLatestVersion(
+      commandShim.moduleUrlSegments.moduleBaseURL,
+    );
+  log.info(`Latest online version: ${remoteVersion}`);
+
+  if (localVersion === remoteVersion) {
     log.info(`Latest version already installed => doing nothing`);
     return;
   }
 
   const versionString = (targetVersion === "latest")
-    ? latestOnlineVersion
+    ? remoteVersion
     : targetVersion;
 
   log.info(
     `Installing new version: ${versionString}. (Based on whether 'latest' was passed as targetVersion or a specific version.)`,
   );
 
-  const upgradeUrl = new URL(
-    `/x/${commandDetails.moduleName}@${versionString}/${commandDetails.filepath}`,
-    commandDetails.moduleBaseUrl,
+  const upgradeUrl = commandShim.moduleRegistry.buildModuleUrl(
+    commandShim.moduleUrlSegments.moduleBaseURL,
+    versionString,
+    commandShim.moduleUrlSegments.entryFilePath,
   );
 
   const upgradeCmd = [
     "deno",
     "install",
-    ...commandDetails.execFlags,
+    ...commandShim.execCommand.execFlags,
     "--force",
     "--name",
     cliName,
