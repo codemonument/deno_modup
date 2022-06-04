@@ -1,11 +1,11 @@
 import { DenoModuleUrlSegments } from "../deno-module-registries/deno-module-url-segments.type.ts";
-import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
+import { ExecCommand } from "./exec-command.type.ts";
 
 /**
  * A data structure which can be used to parse command shim (a.k.a cli-alias) files
  *  which deno creates when using the `deno install` command
  */
-export interface DenoCommandShim {
+export interface CommandShim {
   /**
    * The path where the command shim was found.
    */

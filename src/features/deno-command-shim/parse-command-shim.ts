@@ -1,9 +1,9 @@
-import { DenoCommandShim } from "./deno-command-shim.type.ts";
+import { CommandShim } from "./command-shim.type.ts";
+import { ExecCommand } from "./exec-command.type.ts";
 import { parseExecCommand } from "./parse-exec-command.ts";
 import { DenoModuleUrlSegments } from "../deno-module-registries/deno-module-url-segments.type.ts";
 import { DenoModuleRegistry } from "../deno-module-registries/deno-module-registry.type.ts";
 import { detectModuleRegistry } from "../deno-module-registries/detect-module-registry.ts";
-import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
 
 export interface ParseCommandShimOptions {
   /**
@@ -27,7 +27,7 @@ export function parseCommandShim(
   shimPath: string,
   shimContent: string | string[],
   options: Partial<ParseCommandShimOptions> = {},
-): DenoCommandShim {
+): CommandShim {
   const { validateDenoShim } = { ...defaultOptions, ...options };
 
   const shimLines = (typeof shimContent === "string")
@@ -46,7 +46,7 @@ export function parseCommandShim(
     );
   }
 
-  const execCommand: DenoShimExecCommand = parseExecCommand(commandString);
+  const execCommand: ExecCommand = parseExecCommand(commandString);
   const moduleRegistry: DenoModuleRegistry = detectModuleRegistry(
     execCommand.moduleURL,
   );

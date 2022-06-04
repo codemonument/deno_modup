@@ -1,6 +1,4 @@
-import { DenoModuleRegistry } from "../deno-module-registries/deno-module-registry.type.ts";
-
-export interface DenoShimExecCommand {
+export interface ExecCommand {
   /**
    * Contains the complete command string,
    * starting with 'deno run ...'

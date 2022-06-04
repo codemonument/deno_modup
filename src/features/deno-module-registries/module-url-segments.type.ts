@@ -1,6 +1,6 @@
 import { DenoModuleRegistry } from "./deno-module-registry.type.ts";
 
-export interface DenoModuleUrlSegments {
+export interface ModuleUrlSegments {
   /**
    * The complete URL for the executable module
    * Example: https://deno.land/x/mymodule@2.0.1/main.ts
