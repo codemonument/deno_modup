@@ -10,6 +10,11 @@ export class NestLandRegistry extends DenoModuleRegistry {
     super();
   }
 
+  /**
+   * Example URL: https://x.nest.land/api/package/dmm/
+   * @param commandShim
+   * @returns
+   */
   async getLatestVersion(
     commandShim: CommandShim,
   ): Promise<LatestModuleVersion> {
