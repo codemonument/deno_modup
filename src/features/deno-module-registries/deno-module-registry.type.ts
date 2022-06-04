@@ -1,5 +1,4 @@
-import { DenoCommandShim } from "../deno-command-shim/deno-command-shim.type.ts";
-import { DenoModuleUrlSegments } from "./deno-module-url-segments.type.ts";
+import { ModuleUrlSegments } from "./module-url-segments.type.ts";
 /**
  * Todo: Implement
  */
@@ -17,10 +16,10 @@ export abstract class DenoModuleRegistry {
    * @returns an object containing the latest version as string and the module url for the latest version as URL.
    */
   abstract getLatestVersion(
-    commandShim: DenoCommandShim,
-  ): { versionString: string; latestVersionModuleUrl: URL };
+    moduleBaseURL: URL,
+  ): Promise<{ versionString: string; latestVersionModuleUrl: URL }>;
 
   abstract parseModuleUrlSegments(
     urlInput: string | URL,
-  ): DenoModuleUrlSegments;
+  ): ModuleUrlSegments;
 }
