@@ -33,7 +33,8 @@ async function commandHandler(
   const localVersion = commandShim.moduleUrlSegments.moduleVersion;
   log.info(`Current local version: ${localVersion}`);
 
-  const { versionString: remoteVersion } = await commandShim.moduleRegistry
+  const { latestModuleVersion: remoteVersion } = await commandShim
+    .moduleRegistry
     .getLatestVersion(
       commandShim.moduleUrlSegments.moduleBaseURL,
     );

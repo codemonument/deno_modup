@@ -17,7 +17,7 @@ export abstract class DenoModuleRegistry {
    */
   abstract getLatestVersion(
     moduleBaseURL: URL,
-  ): Promise<{ versionString: string; latestVersionModuleUrl: URL }>;
+  ): Promise<{ latestModuleVersion: string; latestVersionModuleUrl: URL }>;
 
   abstract parseModuleUrlSegments(
     urlInput: string | URL,
