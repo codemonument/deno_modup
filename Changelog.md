@@ -1,13 +1,15 @@
 # Changelog 
 
-## NEXT
+## 1.1.0 - 2022-06-04
 
 - Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts
 - Fix Install command in Readme
 - Deactivate '--help' output when an error happens 
 - Add validations: 
     - throw error when command url is a file:/// url 
-    - throw error when command url is not supported (currently only deno.land)
+    - throw error when command url host is not supported (currently only deno.land and x.nest.land)
+- Rewrite complete core to be more flexible (with abstraction for deno module registries)
+- Add support for nest.land repository
 
 ## 1.0.0 - 2022-06-01
 
