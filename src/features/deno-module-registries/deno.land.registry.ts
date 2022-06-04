@@ -26,7 +26,10 @@ export class DenoLandRegistry extends DenoModuleRegistry {
 
     // Throw away the body, not needed
     res.body?.cancel();
-    const latestVersionModuleUrl = new URL(newLocation, moduleBaseURL);
+    const latestVersionModuleUrl = new URL(
+      `${newLocation}/${commandShim.moduleUrlSegments.entryFilePath}`,
+      moduleBaseURL,
+    );
 
     const { moduleVersion: latestModuleVersion } = this.parseModuleUrlSegments(
       latestVersionModuleUrl,

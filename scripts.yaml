@@ -30,6 +30,7 @@ scripts:
     cmd: deno test 
     allow: 
       net: true
+      read: true
 
   update-snapshots: 
     cmd: deno test -- --update
