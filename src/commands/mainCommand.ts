@@ -35,9 +35,7 @@ async function commandHandler(
 
   const { latestModuleVersion: remoteVersion } = await commandShim
     .moduleRegistry
-    .getLatestVersion(
-      commandShim.moduleUrlSegments.moduleBaseURL,
-    );
+    .getLatestVersion(commandShim);
   log.info(`Latest online version: ${remoteVersion}`);
 
   if (localVersion === remoteVersion) {
