@@ -1,5 +1,6 @@
 import { ModuleUrlSegments } from "../deno-module-registries/module-url-segments.type.ts";
 import { ExecCommand } from "./exec-command.type.ts";
+import { DenoModuleRegistry } from "../deno-module-registries/deno-module-registry.type.ts";
 
 /**
  * A data structure which can be used to parse command shim (a.k.a cli-alias) files
@@ -30,4 +31,9 @@ export interface CommandShim {
    * The segments of the url, like moduleName and moduleVersion
    */
   moduleUrlSegments: ModuleUrlSegments;
+
+  /**
+   * The registry object valid for this command shim
+   */
+  moduleRegistry: DenoModuleRegistry;
 }
