@@ -1,3 +1,4 @@
+import { DenoModuleUrlSegments } from "../deno-module-registries/deno-module-url-segments.type.ts";
 import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
 
 /**
@@ -20,5 +21,13 @@ export interface DenoCommandShim {
    */
   commandString: string;
 
+  /**
+   * The parsed exec command
+   */
   execCommand: DenoShimExecCommand;
+
+  /**
+   * The segments of the url, like moduleName and moduleVersion
+   */
+  moduleUrlSegments: DenoModuleUrlSegments;
 }
