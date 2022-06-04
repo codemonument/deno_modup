@@ -9,10 +9,31 @@ export class DenoLandRegistry extends DenoModuleRegistry {
     super();
   }
 
-  getLatestVersion(
-    commandShim: CommandShim,
-  ): { versionString: string; latestVersionModuleUrl: URL } {
-    throw new Error("Method not implemented.");
+  async getLatestVersion(
+    moduleBaseURL: URL,
+  ): Promise<{ versionString: string; latestVersionModuleUrl: URL }> {
+    const res = await fetch(moduleBaseURL.toString(), { redirect: "manual" });
+
+    // Extract the location header from the response
+    const newLocation = res.headers.get("location");
+    if (res.status !== 302 || newLocation === null) {
+      throw new Deno.errors.InvalidData(
+        `Response from ${moduleBaseURL} is not a redirect response or doesn't contain a location header!`,
+      );
+    }
+
+    // Throw away the body, not needed
+    res.body?.cancel();
+    const latestVersionModuleUrl = new URL(newLocation, moduleBaseURL);
+
+    const { moduleVersion } = this.parseModuleUrlSegments(
+      latestVersionModuleUrl,
+    );
+
+    return {
+      versionString: moduleVersion,
+      latestVersionModuleUrl,
+    };
   }
 
   parseModuleUrlSegments(
