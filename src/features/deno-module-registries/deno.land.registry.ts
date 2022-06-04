@@ -64,4 +64,16 @@ export class DenoLandRegistry extends DenoModuleRegistry {
       entryFilePath: filepath.join("/"),
     };
   }
+
+  buildModuleUrl(
+    moduleBaseURL: URL,
+    moduleVersion: string,
+    entryFilePath: string,
+  ): URL {
+    const moduleBaseUrlString = moduleBaseURL.toString();
+
+    return new URL(
+      `${moduleBaseUrlString}@${moduleVersion}/${entryFilePath}`,
+    );
+  }
 }
