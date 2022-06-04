@@ -1,5 +1,6 @@
 import { CommandShim } from "../deno-command-shim/command-shim.type.ts";
 import { DenoModuleRegistry } from "./deno-module-registry.type.ts";
+import { LatestModuleVersion } from "./latest-module-version.type.ts";
 import { ModuleUrlSegments } from "./module-url-segments.type.ts";
 
 export class DenoLandRegistry extends DenoModuleRegistry {
@@ -11,7 +12,7 @@ export class DenoLandRegistry extends DenoModuleRegistry {
 
   async getLatestVersion(
     moduleBaseURL: URL,
-  ): Promise<{ versionString: string; latestVersionModuleUrl: URL }> {
+  ): Promise<LatestModuleVersion> {
     const res = await fetch(moduleBaseURL.toString(), { redirect: "manual" });
 
     // Extract the location header from the response

@@ -1,3 +1,4 @@
+import { LatestModuleVersion } from "./latest-module-version.type.ts";
 import { ModuleUrlSegments } from "./module-url-segments.type.ts";
 /**
  * Todo: Implement
@@ -17,7 +18,7 @@ export abstract class DenoModuleRegistry {
    */
   abstract getLatestVersion(
     moduleBaseURL: URL,
-  ): Promise<{ latestModuleVersion: string; latestVersionModuleUrl: URL }>;
+  ): Promise<LatestModuleVersion>;
 
   abstract parseModuleUrlSegments(
     urlInput: string | URL,

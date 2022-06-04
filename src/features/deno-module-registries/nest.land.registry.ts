@@ -1,5 +1,6 @@
 import { CommandShim } from "../deno-command-shim/command-shim.type.ts";
 import { DenoModuleRegistry } from "./deno-module-registry.type.ts";
+import { LatestModuleVersion } from "./latest-module-version.type.ts";
 import { ModuleUrlSegments } from "./module-url-segments.type.ts";
 
 export class NestLandRegistry extends DenoModuleRegistry {
@@ -11,7 +12,7 @@ export class NestLandRegistry extends DenoModuleRegistry {
 
   getLatestVersion(
     moduleBaseURL: URL,
-  ): Promise<{ latestModuleVersion: string; latestVersionModuleUrl: URL }> {
+  ): Promise<LatestModuleVersion> {
     throw new Error("Method not implemented.");
   }
 
