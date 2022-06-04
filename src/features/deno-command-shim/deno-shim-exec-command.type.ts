@@ -1,3 +1,5 @@
+import { DenoModuleRegistry } from "../deno-module-registries/deno-module-registry.type.ts";
+
 export interface DenoShimExecCommand {
   /**
    * Contains the complete command string,
@@ -16,6 +18,11 @@ export interface DenoShimExecCommand {
    * Example: https://deno.land/x/mymodule@2.0.1/main.ts
    */
   moduleURL: URL;
+
+  /**
+   * Contains the deno module registry
+   */
+  moduleRegistry?: DenoModuleRegistry;
 
   /**
    * Example: Contains an URL instance with the URL:
