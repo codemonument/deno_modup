@@ -14,7 +14,7 @@ scripts:
     cmd: deno run main.ts codeup latest
     allow: 
       read: true
-      net: true
+      net: 'deno.land,x.nest.land'
       run: "deno"
   
   reset: 
@@ -52,7 +52,7 @@ scripts:
     cmd: deno install --name ${CLI_NAME} main.ts 
     allow: 
       read: true
-      net: 'deno.land'
+      net: 'deno.land,x.nest.land'
       run: 'deno'
 
   uninstall: deno uninstall --unstable ${CLI_NAME}
