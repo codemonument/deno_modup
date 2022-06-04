@@ -1,4 +1,4 @@
-import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
+import { ExecCommand } from "./exec-command.type.ts";
 
 /**
  * Important: This parser does not do any validation!
@@ -8,7 +8,7 @@ import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
  * Example: exec deno run --allow-read=deps.ts --allow-write=deps.ts --allow-net 'https://x.nest.land/dmm@2.1.0/mod.ts' "$@"
  * @returns
  */
-export function parseExecCommand(execCommand: string): DenoShimExecCommand {
+export function parseExecCommand(execCommand: string): ExecCommand {
   const commandSplit = execCommand.split(" ");
 
   const execFlags = commandSplit.filter((section) =>
