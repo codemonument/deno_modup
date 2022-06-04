@@ -1,5 +1,5 @@
 export interface DenoModuleUrlSegments {
-  completeModuleUrl: URL;
+  completeModuleURL: URL;
   moduleName: string;
   moduleVersion: string;
   filepath: string;
