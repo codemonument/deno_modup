@@ -11,15 +11,16 @@ export class DenoLandRegistry extends DenoModuleRegistry {
   }
 
   async getLatestVersion(
-    moduleBaseURL: URL,
+    commandShim: CommandShim,
   ): Promise<LatestModuleVersion> {
+    const moduleBaseURL = commandShim.moduleUrlSegments.moduleBaseURL;
     const res = await fetch(moduleBaseURL.toString(), { redirect: "manual" });
 
     // Extract the location header from the response
     const newLocation = res.headers.get("location");
     if (res.status !== 302 || newLocation === null) {
       throw new Deno.errors.InvalidData(
-        `Response from ${moduleBaseURL} is not a redirect response or doesn't contain a location header!`,
+        `Response from ${moduleBaseURL.toString()} is not a redirect response or doesn't contain a location header!`,
       );
     }
 
@@ -27,12 +28,12 @@ export class DenoLandRegistry extends DenoModuleRegistry {
     res.body?.cancel();
     const latestVersionModuleUrl = new URL(newLocation, moduleBaseURL);
 
-    const { moduleVersion } = this.parseModuleUrlSegments(
+    const { moduleVersion: latestModuleVersion } = this.parseModuleUrlSegments(
       latestVersionModuleUrl,
     );
 
     return {
-      versionString: moduleVersion,
+      latestModuleVersion,
       latestVersionModuleUrl,
     };
   }
