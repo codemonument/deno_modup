@@ -5,7 +5,7 @@ import { DenoModuleRegistry } from "../deno-module-registries/deno-module-regist
 import { detectModuleRegistry } from "../deno-module-registries/detect-module-registry.ts";
 import { DenoShimExecCommand } from "./deno-shim-exec-command.type.ts";
 
-export interface ParseDenoCommandShimOptions {
+export interface ParseCommandShimOptions {
   /**
    * Default: true
    * If set to false, parsing function will not validate,
@@ -14,7 +14,7 @@ export interface ParseDenoCommandShimOptions {
   validateDenoShim: boolean;
 }
 
-const defaultOptions: ParseDenoCommandShimOptions = {
+const defaultOptions: ParseCommandShimOptions = {
   validateDenoShim: true,
 };
 
@@ -23,10 +23,10 @@ const defaultOptions: ParseDenoCommandShimOptions = {
  * @param shimContent the content of the command shim as string
  * (so that this parser does not need to load the file itself - better for testing)
  */
-export function parseDenoCommandShim(
+export function parseCommandShim(
   shimPath: string,
   shimContent: string | string[],
-  options: Partial<ParseDenoCommandShimOptions> = {},
+  options: Partial<ParseCommandShimOptions> = {},
 ): DenoCommandShim {
   const { validateDenoShim } = { ...defaultOptions, ...options };
 
