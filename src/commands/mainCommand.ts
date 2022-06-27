@@ -2,8 +2,8 @@ import { YargsInstance } from "../deps/yargs.ts";
 import { MainArgs } from "./mainArgs.type.ts";
 import { join } from "../deps/path.std.ts";
 import { log } from "../deps/log.std.ts";
-import { which } from "../deps/which.ts";
 import { parseCommandShim } from "../features/deno-command-shim/parse-command-shim.ts";
+import { findCommandShim } from "../features/deno-command-shim/find-command-shim.ts";
 
 /**
  * @param args
@@ -15,20 +15,19 @@ async function commandHandler(
     `Trying to update cli "${cliName}" to version "${targetVersion}"...`,
   );
 
-  const commandFile = await which(cliName);
-  if (commandFile === undefined) {
-    throw new Deno.errors.NotFound(
-      `Script file for command "${cliName}" could not be found! This should not happen, if the cli is callable manually!`,
-    );
-  }
+  const commandFileRes = await findCommandShim(cliName);
+  const commandFile = commandFileRes.unwrapOrThrow();
+
   log.info(
     `Found: Script file for command "${cliName}" (a.k.a Command File): ${commandFile}`,
   );
+
   const commandFileContent = await Deno.readTextFile(commandFile);
 
-  const commandShim = parseCommandShim(commandFile, commandFileContent, {
+  const commandShimRes = parseCommandShim(commandFile, commandFileContent, {
     validateDenoShim: !force,
   });
+  const commandShim = commandShimRes.unwrapOrThrow();
 
   const localVersion = commandShim.moduleUrlSegments.moduleVersion;
   log.info(`Current local version: ${localVersion}`);
