@@ -9,7 +9,7 @@ import { VERSION } from "../VERSION.ts";
 export const parser = yargs()
   .command(commands)
   .showHelpOnFail(false, `Specify --help for available options`)
-  .help(`help`)
+  .help(false)
   .version(VERSION);
 
 /**
