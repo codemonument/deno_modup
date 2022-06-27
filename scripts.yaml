@@ -27,7 +27,7 @@ scripts:
       run: true
 
   test: 
-    cmd: deno test 
+    cmd: deno test --fail-fast
     allow: 
       net: true
       read: true
