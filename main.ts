@@ -2,22 +2,20 @@ import { log } from "./src/deps/log.std.ts";
 import { runCli } from "./src/runCli.ts";
 import { VERSION } from "./VERSION.ts";
 
-if (import.meta.main) {
-  try {
-    log.info(
-      `Running ${Deno.env.get("CLI_NAME")}
-       Version: ${VERSION} \n`,
-    );
+try {
+  log.info(`Running 'modup' Version: ${VERSION}
+     Your cli command may be different, when you installed it with a different name! \n`);
 
-    // Main Command
-    await runCli(Deno.args);
-  } catch (error) {
-    log.error(error);
-    Deno.exit();
-  }
+  // Main Command
+  await runCli(Deno.args);
+} catch (error) {
+  log.error(error);
+  Deno.exit();
 }
 
-console.log(
-  `You imported this main.ts file, but it is intended to be used with 'deno install'!
-Import /mod.ts instead!`,
-);
+if (!import.meta.main) {
+  console.log(
+    `You imported this main.ts file, but it is intended to be used with 'deno install'!
+  Import /mod.ts instead!`,
+  );
+}
