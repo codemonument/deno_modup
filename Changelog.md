@@ -1,5 +1,10 @@
 # Changelog 
 
+## next 
+
+- Export find and parse command shim functions in mod.ts
+- Improved some tests
+
 ## 1.1.0 - 2022-06-04
 
 - Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts
