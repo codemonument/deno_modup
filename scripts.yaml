@@ -48,6 +48,8 @@ scripts:
   compile: 
     cmd: "deno compile --target x86_64-pc-windows-msvc -A -o dist/${CLI_NAME} main.ts "
 
+  # Added by global allow config: 
+  # --allow-env 
   install: 
     cmd: deno install --name ${CLI_NAME} main.ts 
     allow: 
@@ -56,6 +58,12 @@ scripts:
       net: 'deno.land,x.nest.land'
 
   uninstall: deno uninstall --unstable ${CLI_NAME}
+
+  install-cowsay: 
+    cmd: deno install --name cowsay https://deno.land/x/cowsay/cowsay.ts
+
+  uninstall-cowsay: 
+    cmd: deno uninstall cowsay
 
     
     
