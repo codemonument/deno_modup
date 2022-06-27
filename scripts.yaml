@@ -61,7 +61,7 @@ scripts:
   uninstall: deno uninstall --unstable ${CLI_NAME}
 
   install-cowsay: 
-    cmd: deno install --name cowsay https://deno.land/x/cowsay/cowsay.ts
+    cmd: deno install --name cowsay https://deno.land/x/cowsay@1.0/cowsay.ts
 
   uninstall-cowsay: 
     cmd: deno uninstall cowsay
