@@ -9,11 +9,11 @@ export class MainCommand extends Line.MainCommand {
   };
 
   public options = {
-    "--dryRun":
+    "-d, --dryRun":
       `Does not execute the update but outputs useful information about what it will do.`,
-    "--force":
+    "-f, --force":
       `forces the cli to ignore all security validations during an update.`,
-    "--targetVersion":
+    "-t, --targetVersion":
       `A version tag which maches an available tag for the module on deno.land/x. Default: latest`,
   };
 
