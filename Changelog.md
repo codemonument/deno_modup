@@ -5,6 +5,7 @@
 - Export find and parse command shim functions in mod.ts
 - Improved some tests
 - add import.meta.main guard to main.ts [import.meta.main ideom](https://deno.land/manual/examples/module_metadata)
+- switch from yargs parser (too complicated in deno world) to [drash.land/line](https://drash.land/line/v1.x/getting-started/introduction)
 
 ## 1.1.0 - 2022-06-04
 
