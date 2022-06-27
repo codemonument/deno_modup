@@ -13,7 +13,7 @@ export class MainCommand extends Line.MainCommand {
       `Does not execute the update but outputs useful information about what it will do.`,
     "-f, --force":
       `forces the cli to ignore all security validations during an update.`,
-    "-t, --targetVersion":
+    "-t [value], --targetVersion [value]":
       `A version tag which maches an available tag for the module on deno.land/x. Default: latest`,
   };
 
