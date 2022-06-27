@@ -6,6 +6,9 @@
 envFile:
  - .env
 
+env: 
+  CLI_NAME: modup-intern
+
 allow: 
   env: true
 
@@ -49,13 +52,25 @@ scripts:
     cmd: "deno compile --target x86_64-pc-windows-msvc -A -o dist/${CLI_NAME} main.ts "
 
   install: 
-    cmd: deno install --name ${CLI_NAME} main.ts 
+    cmd: deno install --name ${CLI_NAME} ./main.ts 
     allow: 
       read: true
       run: true
       net: 'deno.land,x.nest.land'
 
   uninstall: deno uninstall --unstable ${CLI_NAME}
+
+  install-win: 
+    cmd: deno install --name %CLI_NAME% ./main.ts 
+    allow: 
+      read: true
+      run: true
+      net: 'deno.land,x.nest.land'
+
+  uninstall-win: deno uninstall --unstable $CLI_NAME
+
+  demo: 
+    cmd: echo %CLI_NAME%
 
     
     

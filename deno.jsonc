@@ -17,6 +17,11 @@
      * Docs for Deno Tasks: https://deno.land/manual@v1.20.1/tools/task_runner
      */
     "tasks": {
-        "start": "deno run -A --unstable main.ts"
+        "start": "deno run -A --unstable main.ts", 
+        "install": "", 
+        "uninstall": "", 
+        "demo": "deno run https://deno.land/x/dotenv/load.ts && echo $CLI_NAME", 
+        "demo2": "with-env .env -- deno eval \"console.log('Deno: ' + Deno.env.get('VAR'))\" ",
+        "demo3": "cross-env VAR=HelloWorld! deno eval \"console.log('Deno: ' + Deno.env.get('VAR'))\""
     }
 }
