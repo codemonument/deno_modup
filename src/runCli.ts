@@ -1,20 +1,19 @@
 import { yargs } from "./deps/yargs.ts";
 import { commands } from "./commands/index.ts";
 import { VERSION } from "../VERSION.ts";
+import { Line } from "./deps/line.ts";
+import { MainCommand } from "./commands/mainCommand.ts";
 
-/**
- * The yargs parser instance.
- * Exported for easier unit testing
- */
-export const parser = yargs()
-  .command(commands)
-  .showHelpOnFail(false, `Specify --help for available options`)
-  .help(false)
-  .version(VERSION);
+const cli = new Line.CLI({
+  name: "modup",
+  description: "The Deno Module Updater",
+  version: VERSION,
+  command: MainCommand,
+});
 
 /**
  * @param args should normally contain Deno.args, but can also contain mocked data for testing
  */
 export async function runCli(args: string[]) {
-  const res = await parser.parseAsync(args).argv;
+  await cli.run();
 }
