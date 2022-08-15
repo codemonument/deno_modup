@@ -33,7 +33,8 @@ scripts:
       read: true
       run: true
 
-  update-snapshots: 
+  # runs tests and updates snapshots
+  test-update: 
     cmd: deno test -- --update
     allow: 
       all: true
