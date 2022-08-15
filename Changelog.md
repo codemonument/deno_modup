@@ -1,5 +1,9 @@
 # Changelog 
 
+## 1.1.1 - 2022-8-15 
+
+- Improve Readme & github repo description by listing "@codemonument" in there as a keyword
+
 ## 1.1.0 - 2022-06-04
 
 - Re-Export the main command from this cli tool in ./mod.ts as typescript module to be consumed by other deno scripts

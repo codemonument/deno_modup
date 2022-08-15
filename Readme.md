@@ -1,9 +1,9 @@
 # modup CLI 
 
-A CLI tool named `modup` (like the rustup cli) to upgrade deno module binaries installed from deno.land/x via `deno install`. 
+A CLI tool by @codemonument named `modup` (like the rustup cli) to upgrade deno module binaries installed from deno.land/x via `deno install`. 
 Language: Typescript 
 Run via: deno / as portable cli 
-Command (currently): codeup.exe
+Command (currently): modup.exe
 
 ## How to use 
 
