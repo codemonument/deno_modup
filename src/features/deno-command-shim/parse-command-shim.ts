@@ -4,7 +4,7 @@ import { parseExecCommand } from "./parse-exec-command.ts";
 import { ModuleUrlSegments } from "../deno-module-registries/module-url-segments.type.ts";
 import { DenoModuleRegistry } from "../deno-module-registries/deno-module-registry.type.ts";
 import { detectModuleRegistry } from "../deno-module-registries/detect-module-registry.ts";
-import { error, Result, value } from "../../deps/defect.ts";
+import { error, Result, value } from "../../deps/defekt.ts";
 import { ShimPotentiallyInvalid } from "../../errors/ShimPotentiallyInvalid.ts";
 
 export interface ParseCommandShimOptions {

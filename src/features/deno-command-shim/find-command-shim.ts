@@ -1,5 +1,5 @@
 import { which } from "../../deps/which.ts";
-import { error, Result, value } from "../../deps/defect.ts";
+import { error, Result, value } from "../../deps/defekt.ts";
 import { ShimNotFound } from "../../errors/ShimNotFound.ts";
 
 /**

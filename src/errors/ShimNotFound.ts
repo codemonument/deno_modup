@@ -1,4 +1,4 @@
-import { defekt } from "../deps/defect.ts";
+import { defekt } from "../deps/defekt.ts";
 
 export class ShimNotFound extends defekt({
   code: "ShimNotFound",
