@@ -1,6 +1,7 @@
 import {
   assertRejects,
   assertSpyCall,
+  beforeAll,
   beforeEach,
   describe,
   it,
@@ -9,7 +10,7 @@ import {
 import { log } from "./deps/log.std.ts";
 import { runCli } from "./runCli.ts";
 
-describe.only(`runCli`, () => {
+describe(`runCli`, () => {
   const exitStub = stub(
     Deno,
     "exit",
@@ -19,12 +20,12 @@ describe.only(`runCli`, () => {
   );
 
   it(`on arg '--help': showHelp & exit(0)`, async () => {
-    await assertSpyCall(exitStub, 0);
     await assertRejects(() => runCli(["--help"]));
+    await assertSpyCall(exitStub, 0);
   });
 
   it(`on command 'help': showHelp & exit(0)`, async () => {
-    await assertSpyCall(exitStub, 0);
     await assertRejects(() => runCli(["help"]));
+    await assertSpyCall(exitStub, 1);
   });
 });
