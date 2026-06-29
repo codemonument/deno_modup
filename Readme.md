@@ -5,6 +5,10 @@ Language: Typescript
 Run via: deno / as portable cli 
 Command (currently): modup.exe
 
+## Development environment
+
+This repository is intentionally small and self-contained. It does not need Varlock or jb-dev-env treatment.
+
 ## How to use 
 
 
